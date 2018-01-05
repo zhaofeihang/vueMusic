@@ -1,6 +1,6 @@
 import jsonp from 'common/js/jsonp'
 import {commonParams, options} from './config'
-
+import axios from 'axios'
 export function getRecommend() {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
   const data = Object.assign({}, commonParams, {
@@ -10,10 +10,9 @@ export function getRecommend() {
   })
   return jsonp(url, data, options)
 }
-
 export function getDiscList() {
-  const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg?'
-
+  // 线上环境地址，同学们根据自己的需要配置修改
+  const url = '/api/getDiscList'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
     hostUin: 0,
@@ -22,7 +21,12 @@ export function getDiscList() {
     sortId: 5,
     needNewCode: 0,
     categoryId: 10000000,
-    rnd: Math.random()
+    rnd: Math.random(),
+    format: 'json'
   })
-  return jsonp(url, data, options)
+  return axios.get(url, {
+    params: data
+  }).then((res) => {
+    return Promise.resolve(res.data)
+  })
 }
