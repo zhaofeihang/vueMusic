@@ -1,28 +1,30 @@
 <template>
   <div class="recommend">
     <scroll class="recommend-content" :data="discList">
-      <div v-if="recommends.length" class="slider-wrapper">
-        <slider>
-          <div v-for="item in recommends">
-            <a v-bind:href="item.linkUrl">
-              <img :src="item.picUrl">
-            </a>
-          </div>
-        </slider>
-      </div>
-      <div class="recommend-list">
-        <h1 class="list-title">热门歌单推荐</h1>
-        <ul>
-          <li class="item" v-for="item in discList">
-            <div class="icon">
-              <img :src="item.imgurl" width="60px" height="60px">
+      <div>
+        <div v-if="recommends.length" class="slider-wrapper">
+          <slider>
+            <div v-for="item in recommends">
+              <a v-bind:href="item.linkUrl">
+                <img :src="item.picUrl">
+              </a>
             </div>
-            <div class="text">
-              <h2 class="name" v-html="item.creator.name"></h2>
-              <p class="desc" v-html="item.dissname"></p>
-            </div>
-          </li>
-        </ul>
+          </slider>
+        </div>
+        <div class="recommend-list">
+          <h1 class="list-title">热门歌单推荐</h1>
+          <ul>
+            <li class="item" v-if="discList" v-for="item in discList">
+              <div class="icon">
+                <img :src="item.imgurl" width="60px" height="60px">
+              </div>
+              <div class="text">
+                <h2 class="name" v-html="item.creator.name"></h2>
+                <p class="desc" v-html="item.dissname"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </scroll>
   </div>
