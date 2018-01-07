@@ -14,8 +14,8 @@
   @import "~common/stylus/mixin"
 
   .m-header
-    position: relative
     height: 44px
+    position: relative
     text-align: center
     color: $color-theme
     font-size: 0

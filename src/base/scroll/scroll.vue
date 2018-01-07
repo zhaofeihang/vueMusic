@@ -25,7 +25,7 @@
     mounted() {
       setTimeout(() => {
         this._initScroll()
-      }, 202)
+      }, 20)
     },
     methods: {
       _initScroll() {

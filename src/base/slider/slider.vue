@@ -91,6 +91,18 @@
             this._play()
           }
         })
+
+        this.slider.on('touchend', () => {
+          if (this.autoPlay) {
+            this._play()
+          }
+        })
+
+        this.slider.on('beforeScrollStart', () => {
+          if (this.autoPlay) {
+            clearTimeout(this.timer)
+          }
+        })
       },
       _play() {
         clearTimeout(this.timer)
