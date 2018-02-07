@@ -5,7 +5,7 @@
         <div v-if="recommends.length" class="slider-wrapper">
           <slider>
             <div v-for="item in recommends">
-              <a v-bind:href="item.linkUrl">
+              <a :href="item.linkUrl">
                 <img @load="loadImage" :src="item.picUrl">
               </a>
             </div>
@@ -56,7 +56,7 @@
     methods: {
       selectItem(item) {
         this.$router.push({
-          path: `recommend/${item.dissid}`
+          path: `/recommend/${item.dissid}`
         })
         this.setDisc(item)
       },
