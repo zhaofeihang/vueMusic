@@ -9,6 +9,10 @@
 
   export default {
     props: {
+      pullup: {
+        type: Boolean,
+        default: false
+      },
       probeType: {
         type: Number,
         default: 1
@@ -22,6 +26,10 @@
         default: null
       },
       listenScroll: {
+        type: Boolean,
+        default: false
+      },
+      beforeScroll: {
         type: Boolean,
         default: false
       }
@@ -44,6 +52,18 @@
           let me = this
           this.scroll.on('scroll', (pos) => {
             me.$emit('scroll', pos)
+          })
+        }
+        if (this.pullup) {
+          this.scroll.on('scrollEnd', () => {
+            if (this.scroll.y <= this.scroll.maxScrollY + 50) {
+              this.$emit('scrollToEnd')
+            }
+          })
+        }
+        if (this.beforeScroll) {
+          this.scroll.on('beforeScrollStart', () => {
+            this.$emit('beforeScroll')
           })
         }
       },
